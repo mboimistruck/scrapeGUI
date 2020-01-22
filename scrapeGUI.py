@@ -55,7 +55,7 @@ class DeckMGT(ttk.Frame):
 
     def generateCardHistoryGUI(self):
         listbox = Listbox(Tk())
-        listbox.configure(width=60, height=20)
+        listbox.configure(width=75, height=20)
         listbox.winfo_toplevel().title("Results for " + self.cardNameComboBox.get())
         listbox.configure()
         listbox.pack()
@@ -66,12 +66,13 @@ class DeckMGT(ttk.Frame):
     def generatePriceReport(self):
         storedReports = []
         listbox = Listbox(Tk())
-        listbox.configure(width=60, height=20)
+        listbox.configure(width=75, height=20)
         listbox.winfo_toplevel().title("Price Report")
         listbox.configure()
         listbox.pack()
 
         for each in open("URLs.txt"):
+            print(each)
             soup = BeautifulSoup(requests.get(url=each, headers=headers).content, "html.parser")
             cardName = soup.find('h1', attrs={"class": "title"}).get_text().replace('/', '')
             if (soup.find('span', attrs={"class": "variant-short-info"}).get_text() == "Out of stock."):
